@@ -1,10 +1,13 @@
-import {User} from "../model/user.js"
+import {Product} from "../model/user.js"
 
-let users = []
+let product = []
 
 export const getUsers = (req,res)=>{
     console.log("getUsers Started")
-    User.find()
+    
+    console.log(req.query)
+    
+    Product.find()
     .then(
         (result)=>{
             res.send(result)
@@ -19,21 +22,10 @@ export const getUsers = (req,res)=>{
 
 export const createUsers = (req,res)=>{
     console.log("createUsers Started")
-    const user = new User({
-        name:req.body.name,
-        age:req.body.age,
-        gender:req.body.gender,
-        city:req.body.city,
+    const product = new Product({
+        productName:req.body.productName,
+        price:req.body.price,
     })
-    user.save()
-    .then(
-        (result)=>{
-            res.send(result)
-        }
-    )
-    .catch(
-        (err)=>{
-            console.log(err)
-        }
-    )
+    product.save()
+    res.send({"result":"success"})
 }
